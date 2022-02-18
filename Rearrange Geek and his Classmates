@@ -1,0 +1,9 @@
+class Solution:
+    def prank(self, a, n): 
+        dick= {}
+        for i in range(n):
+            dick[a[i]] = i
+        for key,val in dick.items():
+            idx = dick[val]
+            toidx = dick[idx]
+            a[toidx] = val
