@@ -1,0 +1,29 @@
+import sys
+sys.setrecursionlimit(10**6)
+class Solution:
+   def helper_dfs(self,i,j,visited,grid):
+       if i>=0 and i<len(grid) and j>=0 and j<len(grid[0]) and grid[i][j]!=0 and visited[i][j] ==False:
+           visited[i][j]=True
+           Solution.helper_dfs(self,i+1,j,visited,grid)
+           Solution.helper_dfs(self,i-1,j,visited,grid)
+           Solution.helper_dfs(self,i,j+1,visited,grid)
+           Solution.helper_dfs(self,i,j-1,visited,grid)
+           Solution.helper_dfs(self,i+1,j+1,visited,grid)
+           Solution.helper_dfs(self,i-1,j-1,visited,grid)
+           Solution.helper_dfs(self,i-1,j+1,visited,grid)
+           Solution.helper_dfs(self,i+1,j-1,visited,grid)
+       return
+   
+   
+   
+   def numIslands(self,grid):
+       a=len(grid)
+       b=len(grid[0])
+       c=0
+       visited=[[False for i in range(b)]for i in range(a)]
+       for i in range(0,a):
+           for j in range(0,b):
+               if grid[i][j]==1 and visited[i][j] is False:
+                   self.helper_dfs(i,j,visited,grid)
+                   c+=1
+       return c
