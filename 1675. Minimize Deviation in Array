@@ -1,0 +1,26 @@
+class Solution:
+    def minimumDeviation(self, nums: List[int]) -> int:
+        import heapq
+        heap = nums[:]
+        heapq.heapify(heap)
+        while heap:
+            cur = heapq.heappop(heap)
+            if cur % 2 == 0:
+                heapq.heappush(heap, cur)
+                break
+            cur <<= 1
+            heapq.heappush(heap, cur)
+        curMin = min(heap)
+        ans = max(heap) - curMin
+        heap = [-i for i in heap]
+        heapq.heapify(heap)
+        while heap:
+            curMax = abs(heapq.heappop(heap))
+            ans = min(ans, curMax - curMin)
+            if curMax % 2 == 1:
+                break
+            curMax >>= 1
+            curMin = min(curMin, curMax)
+            heapq.heappush(heap, -curMax)
+        return ans
+        
