@@ -1,0 +1,16 @@
+def mysort(a):
+    return a[0]
+def mysort2(a):
+    return a[1]
+class Solution:
+    def removeCoveredIntervals(self, nums: List[List[int]]) -> int:
+        nums.sort(key=mysort2, reverse=True)
+        nums.sort(key=mysort)
+        count = 0
+        curr = 0
+        for interval in nums:
+            if interval[1]>curr:
+                curr = interval[1]
+                count+=1
+            
+        return count  
