@@ -1,0 +1,15 @@
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        header = head
+        stack=[]
+        if(head==None):
+            return head
+        while(header):
+            stack.append(header.val)
+            header = header.next
+        stack.sort()
+        header = head
+        for i in range(len(stack)):
+            header.val = stack[i]
+            header = header.next
+        return head
