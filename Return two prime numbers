@@ -1,0 +1,33 @@
+class Solution:
+    
+    def isPrime(self, n):
+        j = 2
+        flag = False
+        while(j*j<=n):
+            if(n%j==0):
+                flag = True
+                break
+            
+            j += 1
+        
+        if (flag == True):
+            return False
+        else:
+            return True
+        
+
+    def primeDivision(self, N):
+        # code here
+        for num in range(2, N+1):
+            j = 2
+            while(j*j <= num):
+                if(num%j == 0):
+                    break
+                
+                j += 1
+        
+            if(j*j > num):
+        
+                rem = N - num
+                if(self.isPrime(rem)):
+                    return num, rem
