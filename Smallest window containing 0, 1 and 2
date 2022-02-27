@@ -1,0 +1,30 @@
+class Solution:
+    def smallestSubstring(self, s):
+        n = len(s)
+        hmap1 ={}
+        hmap1["0"] = 1
+        hmap1["1"] = 1
+        hmap1["2"] = 1
+        i = 0
+        j = 0
+        hmap2 = {}
+        hmap2["0"] = 0
+        hmap2["1"] = 0
+        hmap2["2"] = 0
+        ans = 99999999999
+        count = 0
+        while(i < n):
+            while(i<n and count < 3):
+                hmap2[s[i]] += 1
+                if hmap2[s[i]] == hmap1[s[i]]:
+                    count+=1
+                i+=1
+            while( count == 3):
+                ans =min (ans,i-j)
+                hmap2[s[j]] -= 1
+                if hmap2[s[j]] == 0:
+                    count-=1
+                j+=1
+        if ans == 99999999999:
+            return -1
+        return ans
