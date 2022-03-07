@@ -1,0 +1,13 @@
+class Solution:
+    def mergeKLists(self,arr,K):
+        ans = []
+        for i in arr:
+            temp = i
+            while temp:
+                ans.append(temp.data)
+                temp = temp.next
+        ans.sort()
+        opt = LinkedList()
+        for i in ans:
+            opt.add(i)
+        return opt.head
