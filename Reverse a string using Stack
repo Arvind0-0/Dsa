@@ -1,0 +1,8 @@
+def reverse(S):    
+    l=[]
+    for i in S:
+        l.append(i)
+    r=''
+    while(len(l)!=0):
+        r+=l.pop()
+    return r
