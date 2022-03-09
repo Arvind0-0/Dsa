@@ -1,0 +1,15 @@
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dic = defaultdict(int)
+        cur = head
+        ans = ListNode()
+        cur2 = ans
+        while cur:
+            dic[cur.val] += 1
+            cur = cur.next
+        while head:
+            if dic[head.val] == 1:
+                cur2.next = ListNode(head.val)
+                cur2 = cur2.next
+            head = head.next
+        return ans.next
