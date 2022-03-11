@@ -1,0 +1,28 @@
+class Solution(object):
+    def rotateRight(self, head, k):
+        if k == 0:
+            return head
+        curr = head
+        count = 0
+        while curr != None:
+            curr = curr.next
+            count += 1
+        if count <= 1 or k % count == 0:
+            return head
+        no_loops = 0
+        if k < count:
+            no_loops = count - k
+        else:
+            no_loops = count - (k % count)
+        curr = head
+        for i in range(no_loops - 1):
+            curr = curr.next
+        last_node = curr
+        new_head = curr.next
+        curr = new_head
+        while curr.next != None:
+            curr = curr.next
+        curr.next = head
+        head = new_head
+        last_node.next = None
+        return head
