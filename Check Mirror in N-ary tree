@@ -1,0 +1,17 @@
+class Solution:
+    def checkMirrorTree(self, n, e, A, B):
+        def pair_equal(i, j):
+            return A[2*i] == B[2*j] and A[2*i + 1] == B[2*j +1]
+        
+        left = 0
+        parent = float("inf")
+        for right in range(e):
+            if pair_equal(left, right):
+                if A[2*left] == parent:
+                    return 0
+                parent = A[2*left]
+                for i in range(left + 1, right + 1):
+                    if not pair_equal(i, right-i +left):
+                        return 0
+                left = right +1
+        return 1 if left == e else 0
