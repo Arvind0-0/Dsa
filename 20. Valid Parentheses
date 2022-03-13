@@ -1,0 +1,18 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        open_set = set(['(', '[', '{'])
+        open_to_close = {'(' : ')', '{' : '}', '[' : ']'}
+        
+        for paren in s:
+            if paren in open_set:
+                stack.append(paren)
+            else:
+                if len(stack) == 0:
+                    return False
+                
+                open_ = stack.pop()
+                if paren != open_to_close[open_]:
+                    return False
+                
+        return len(stack) == 0
