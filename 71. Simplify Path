@@ -1,0 +1,19 @@
+class Solution:
+    def simplifyPath(self, path: str) -> str:
+        dirs = path.split("/")
+        ans = ""
+        skip = 0
+        for d in reversed(dirs):
+            if d == "." or d == "":
+                continue
+                
+            if d == "..":
+                skip+=1
+                continue
+                
+            if skip == 0:
+                ans = d + "/" + ans
+            else:
+                skip -= 1
+                
+        return "/" + ans[:-1]
