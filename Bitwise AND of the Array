@@ -1,0 +1,13 @@
+import sys
+class Solution:
+    def count(self, N, A, X):
+        res = sys.maxsize
+        curr = 0
+        for i in range(31, -1, -1):
+            if (X >> i) & 1:
+                curr |= 1 << i
+                continue
+            temp = curr | (1 << i)
+            k = len(list(filter(lambda x: x & temp == temp, A)))
+            res = min(res, N - k)
+        return res
