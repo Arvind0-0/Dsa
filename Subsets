@@ -1,0 +1,10 @@
+from itertools import combinations
+class Solution:
+    def subsets(self, A):
+        #code here
+        ans=[()]
+        for x in range(1,len(A)+1):
+            l=list(combinations(A,x))
+            for i in l:
+               ans.append(i)
+        return sorted(ans)
