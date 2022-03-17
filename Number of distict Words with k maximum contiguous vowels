@@ -1,0 +1,16 @@
+class Solution:
+    def kvowelwords(self, N,K):
+		large = 1000000007
+		dp = [1]
+		power5 = [1]
+		for _ in range(K):
+		    power5.append((power5[-1] * 5) % large)
+		for i in range(1, N+1):
+		    total = 0
+		    for j in range(min(i+1, K+1)):
+		        count = power5[j]
+		        if i > j:
+		            count = (count * 21 * dp[i-j-1]) % large
+		        total = (total + count) % large
+		    dp.append(total)
+	    return dp[-1]
