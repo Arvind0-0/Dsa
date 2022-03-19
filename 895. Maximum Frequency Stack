@@ -1,0 +1,25 @@
+class FreqStack:
+
+    def __init__(self):
+        self.frequency = defaultdict(int)
+        self.f_stack = []
+
+    def push(self, val: int) -> None:
+        f_stack = self.f_stack
+        f = self.frequency
+        f[val] += 1
+        stack_idx = f[val]-1
+        if stack_idx == len(f_stack):
+            f_stack.append([])
+        f_stack[stack_idx].append(val)
+        
+
+    def pop(self) -> int:
+        f_stack = self.f_stack
+        f = self.frequency
+        ret = f_stack[-1].pop()
+        f[ret] -= 1
+        
+        if not f_stack[-1]:
+            f_stack.pop()
+        return ret
