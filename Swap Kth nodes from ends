@@ -1,0 +1,39 @@
+def swapkthnode(head, num, k):
+    if n<k:
+        return head
+
+    if (2 * k - 1) == n:
+        return head
+
+    x = head
+    x_prev = Node(None)
+    for i in range(k - 1):
+        x_prev = x
+        x = x.next
+
+    
+    y = head
+    y_prev = Node(None)
+    for i in range(n - k):
+        y_prev = y
+        y = y.next
+
+    
+    if x_prev is not None:
+        x_prev.next = y
+
+    if y_prev is not None:
+        y_prev.next = x
+     
+   
+    temp = x.next
+    x.next = y.next
+    y.next = temp
+
+    if k == 1:
+        head = y
+     
+    if k == n:
+        head = x
+    
+    return head
