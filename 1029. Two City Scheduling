@@ -1,0 +1,8 @@
+class Solution:
+    def twoCitySchedCost(self, costs: List[List[int]]) -> int:
+        totalA = 0
+        for costA, _ in costs:
+            totalA += costA
+        difference = [costB-costA for costA, costB in costs]
+        totalB = sum(sorted(difference)[:len(costs)//2])
+        return totalA + totalB
