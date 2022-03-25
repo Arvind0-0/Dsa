@@ -1,0 +1,15 @@
+def greaterElement (arr,  n) : 
+   #Complete the function
+   s=list(set(arr))
+   s= sorted(s)
+   
+   temp_dict= {s[i]:i for i in range(len(s))}
+   
+   for i in range(n):
+       ind = temp_dict[arr[i]]
+       
+       if ind+1==len(s):
+           arr[i]=-10000000
+       else:
+           arr[i]=s[ind+1]
+   return arr
