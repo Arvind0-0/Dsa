@@ -1,0 +1,16 @@
+class Solution:
+    def findMaxAverage(self, arr, n, k):
+        l = 0 
+        currsum = 0
+        for i in range(k):
+            currsum += arr[i]
+        ans = currsum
+        out = 0
+        for j in range(k,n):
+            currsum -= arr[l]
+            l+=1
+            currsum += arr[j]
+            if currsum > ans:
+                ans = currsum
+                out = l
+        return out
