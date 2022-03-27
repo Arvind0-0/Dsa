@@ -1,0 +1,8 @@
+class Solution:
+    def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
+        a=[]
+        for i in range(len(mat)):
+	        a.append((i,mat[i].count(1)))
+        a.sort(key=lambda x:x[1])
+        a=[i[0] for i in a]
+        return a[:k]
