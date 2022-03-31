@@ -1,0 +1,19 @@
+class Solution:
+    def splitArray(self, nums: List[int], m: int) -> int:
+        def ok(guess):
+            k, curr = 1, 0
+            for n in nums:
+                curr += n
+                if curr > guess:
+                    k += 1
+                    curr = n
+            return k <= m
+        
+        l, r = max(nums), sum(nums)
+        while l < r:
+            mid = ((r - l) >> 1) + l
+            if ok(mid):
+                r = mid
+            else:
+                l = mid + 1 
+        return r410. Split Array Largest Sum
