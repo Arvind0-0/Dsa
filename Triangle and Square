@@ -1,0 +1,9 @@
+class Solution:
+    def countShare(self,B):
+        count = 0
+        no_of_sq = int((B-2)/2)
+        while no_of_sq > 0:
+            count+=no_of_sq
+            no_of_sq = no_of_sq -1
+            
+        return count
