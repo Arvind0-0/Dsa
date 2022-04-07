@@ -1,0 +1,29 @@
+class Solution:
+	def lastStoneWeight(self, stones: List[int]) -> int:
+
+		while len(stones)>1:
+
+			sort_stones = sorted(stones)
+
+			small_num, large_num = sort_stones[-2], sort_stones[-1]
+
+			if small_num == large_num :
+
+				stones = sort_stones[:-2]
+			else:
+
+				sort_stones.remove(small_num)
+
+				sort_stones.remove(large_num)
+
+				sort_stones.append(large_num - small_num)
+
+				stones = sort_stones
+
+		if len(stones)==1:
+
+			return stones[0]
+
+		else:
+
+			return 0
