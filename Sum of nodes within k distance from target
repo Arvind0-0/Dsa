@@ -1,0 +1,32 @@
+class Solution:
+    def sum_at_distK(self,root, target, k):
+        def get_routes(node, parent_node, routes):
+            if not node:
+                return None
+            
+            routes[node] = parent_node
+            if node.data == target:
+                return node
+
+            return get_routes(node.left, node, routes) or get_routes(node.right, node, routes)
+        
+        def travel(n, k, visited):
+            if not n or n in visited or k < 0:
+                return
+            
+            nonlocal s
+            visited.add(n)
+            s += n.data
+            
+            travel(n.left, k-1, visited)
+            travel(n.right, k-1, visited)
+        
+        routes = {}
+        initial = get_routes(root, None, routes)
+        visited = set()
+        s = 0
+        while initial and k >= 0:
+            travel(initial, k, visited)
+            initial = routes[initial]
+            k -= 1
+        return s
