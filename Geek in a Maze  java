@@ -1,0 +1,38 @@
+class Solution{
+    
+    
+    static void add(char arr[][], int i, int j, int u, int d, int visited[][][],Queue<int[]> q){
+        int n = arr.length;
+        int m = arr[0].length;
+        if(i<0 || i>=n || j<0 || j>=m || arr[i][j]=='#') return;
+        if(visited[i][j][0]==0 || u>visited[i][j][1] || d>visited[i][j][2]){
+            visited[i][j][0] = 1;
+    		visited[i][j][1] = u;
+    		visited[i][j][2] = d;
+            q.offer(new int[]{i,j,u,d});
+        }
+    }
+
+	public static int numberOfCells(int n, int m, int r, int c, int u, int d, char mat[][]){
+		// code here
+		if(mat[r][c]=='#') return 0;
+		int visited[][][] = new int[n][m][3];
+		Queue<int[]> q = new LinkedList<>();
+		q.offer(new int[]{r,c,u,d});
+		visited[r][c][0] = 1;
+		visited[r][c][0] = u;
+		visited[r][c][0] = d;
+		while(!q.isEmpty()){
+		    int curr[] = q.poll();
+		    if(curr[2]>0) add(mat,curr[0]-1,curr[1],curr[2]-1,curr[3],visited,q);
+		    add(mat,curr[0],curr[1]+1,curr[2],curr[3],visited,q);
+		    if(curr[3]>0) add(mat,curr[0]+1,curr[1],curr[2],curr[3]-1,visited,q);
+		    add(mat,curr[0],curr[1]-1,curr[2],curr[3],visited,q);
+		}
+		
+	    int count = 0;
+	    for(int arr[][]: visited) for(int ar[]: arr) if(ar[0]==1) count++;
+	    return count;
+	}
+
+}
