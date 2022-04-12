@@ -1,0 +1,54 @@
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -> None:
+        m, n = len(board), len(board[0])
+        
+        def topleft(i,j): # top-left neighbour
+            if i == 0 or j == 0:
+                return 0
+            return temp[i-1][j-1]
+        def top(i,j): # top neighbour
+            if i == 0:
+                return 0
+            return temp[i-1][j]
+        def topright(i,j): # top-right neighbour
+            if i == 0 or j == n-1:
+                return 0
+            return temp[i-1][j+1]
+        def left(i,j): # left neighbour
+            if j == 0:
+                return 0
+            return temp[i][j-1]
+        def right(i,j): # right neighbour
+            if j == n-1:
+                return 0
+            return temp[i][j+1]
+        def bottomleft(i,j): # bottom-left neighbour
+            if i == m-1 or j == 0:
+                return 0
+            return temp[i+1][j-1]
+        def bottom(i,j): # bottom neighbour
+            if i == m-1:
+                return 0
+            return temp[i+1][j]
+        def bottomright(i,j): # bottom-right neighbour
+            if i == m-1 or j == n-1:
+                return 0
+            return temp[i+1][j+1]
+        
+        temp = [] 
+        for i in range(m):
+            temp.append([])
+            for j in range(n):
+                temp[i].append(board[i][j])
+
+        for i in range(m):
+            for j in range(n):
+                tot = topleft(i,j) + top(i,j) + topright(i,j) + left(i,j) + right(i,j) + bottomleft(i,j) + bottom(i,j) + bottomright(i,j)
+                if tot < 2:
+                    board[i][j] = 0
+                elif temp[i][j] == 1 and (tot == 2 or tot == 3):
+                    board[i][j] = 1
+                elif temp[i][j] == 1 and tot > 3:
+                    board[i][j] = 0
+                elif temp[i][j] == 0 and tot == 3:
+                    board[i][j] = 1
