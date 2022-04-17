@@ -1,0 +1,29 @@
+class TreeNode:
+	def __init__(self, val=0, left=None, right=None):
+		self.val = val
+		self.left = left
+		self.right = right
+
+
+class Solution:
+	def recursive(self, root):
+		if root is None or root.val is None:
+			return []
+		whole = self.recursive(root.left) + [root.val] + self.recursive(root.right)
+		return whole
+
+	def increasingBST(self, root: TreeNode) -> TreeNode:
+		li = self.recursive(root)
+		return self.construct(li)
+
+	def construct(self, li: List):
+		t = TreeNode()
+		ans = t
+		while 1:
+			t.val = li[0]
+			li = li[1:]
+			if len(li) == 0:
+				break
+			t.right = TreeNode()
+			t = t.right
+		return ans
