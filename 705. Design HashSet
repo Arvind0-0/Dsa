@@ -1,0 +1,16 @@
+class MyHashSet(object):
+
+    def __init__(self):
+        self.hashSet = set([])
+
+    def add(self, key):
+        self.hashSet.add(key)
+
+    def remove(self, key):
+        if key in self.hashSet:
+            self.hashSet.remove(key)
+
+    def contains(self, key):
+        if key in self.hashSet:
+            return True
+        return False
