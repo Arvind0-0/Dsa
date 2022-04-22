@@ -1,0 +1,17 @@
+def sum(a,b):
+    while(b):
+        carry = a&b
+        a = a^b
+        b = carry<<1
+    return a
+    
+    
+    
+    
+  
+
+def sum(a,b):
+   if(a==b):
+       return 2*a
+   else:
+       return int(((a**2)-(b**2))/(a-b))
