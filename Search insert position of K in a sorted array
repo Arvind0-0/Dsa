@@ -1,0 +1,19 @@
+class Solution:
+   def binarySearch(self,a,value):
+       left=0
+       right=len(a)-1
+       while True:
+           mid=(left + right)//2
+           if value==a[mid]:
+               return mid
+           if value<a[mid]:
+               right=mid-1
+           else:
+               left=mid+1
+           if left>right:
+               return left
+       
+   def searchInsertK(self, arr, n, k):
+       # code here
+           result=self.binarySearch(arr,k)
+           return result
