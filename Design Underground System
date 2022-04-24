@@ -1,0 +1,21 @@
+class UndergroundSystem:
+
+    def __init__(self):
+        self.trips = dict()        
+        self.stations = dict()
+    def checkIn(self, id: int, stationName: str, t: int) -> None:
+        self.trips[id]=(stationName,t)
+
+    def checkOut(self, id: int, stationName: str, t: int) -> None:
+        source,time_checkin = self.trips[id]
+        time_elapsed = t-time_checkin
+        key = source+"-"+stationName
+        if key not in self.stations:
+            self.stations[key] = (time_elapsed,1)
+        else:
+            prev_time_elaped,prev_users = self.stations[key]
+            prev_users+=1
+            self.stations[key] = ((time_elapsed+prev_time_elaped),prev_users)
+
+    def getAverageTime(self, startStation: str, endStation: str) -> float:
+        return self.stations[startStation+"-"+endStation][0]/self.stations[startStation+"-"+endStation][1]
