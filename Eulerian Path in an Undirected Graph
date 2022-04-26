@@ -1,0 +1,7 @@
+def eulerPath(self, N, graph):
+        for i in range(N):
+            if sum(graph[i]) %2 ==0:
+                evencount+=1
+        if evencount == (N-2):
+            return 1
+        return 0
