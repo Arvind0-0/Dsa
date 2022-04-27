@@ -1,0 +1,29 @@
+class Solution:
+    def smallestStringWithSwaps(self, s: str, pairs: List[List[int]]) -> str:
+        p = list(range(len(s)))
+
+        def find(x):
+            if x != p[x]:
+                p[x] = find(p[x])
+            return p[x]
+
+        def union(x, y):
+            px = find(x)
+            py = find(y)
+            if px != py:
+                p[py] = px
+        for x, y in pairs:
+            union(x, y)
+
+        dic = defaultdict(list)
+        for idx, el in enumerate(p):
+            dic[find(el)].append(idx)
+        res = list(s)
+        for key in dic.keys():
+            idx_list = dic[key]
+            char_list = [s[i] for i in idx_list]
+            char_list.sort()
+            for idx, char in zip(idx_list, char_list):
+                res[idx] = char
+
+        return "".join(res)
