@@ -1,0 +1,16 @@
+class Solution:
+   def killinSpree (self, n):
+        # code here
+        low = 1
+        high = 1000000
+        #print(high)
+        count = 0
+        while(low<=high):
+            mid = low+(high-low)//2
+            val = mid*(mid+1)*(2*mid+1)//6
+            if val <= n:
+                ans = mid
+                low = mid+1
+            else:
+                high = mid-1
+        return ans
