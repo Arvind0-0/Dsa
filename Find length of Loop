@@ -1,0 +1,18 @@
+def countNodesinLoop(head):
+    fastptr = head
+    slowptr = head
+    flag = 0
+    while(fastptr != None and fastptr.next!= None):
+        slowptr = slowptr.next
+        fastptr = fastptr.next.next
+        if fastptr == slowptr:
+            flag = 1
+            break
+    if flag == 1:
+        temp = slowptr
+        count = 0
+        while(temp.next != slowptr):
+            count+=1
+            temp = temp.next
+        return count+1
+    return 0
