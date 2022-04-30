@@ -1,0 +1,11 @@
+class Solution:
+    def nonRepeated(s):
+        s = set(s)
+        return len(s)
+	def SolveQueris(self, str, Query):
+		ans = []
+		b = 0
+		for i,j in Query:
+		    b = Solution.nonRepeated(str[i-   1:j])
+		    ans.append(b)
+		return ans
