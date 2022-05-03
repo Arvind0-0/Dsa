@@ -1,0 +1,13 @@
+import math
+class Solution:
+    def subsetXOR(self, arr, N, K): 
+        dp  = {0: 1}
+        ans = 0
+        for x in arr[:N]:
+            key = x ^ K
+            if  key in dp:
+                ans += dp[key]
+            for key, value in list(dp.items()):
+                xor = x ^ key
+                dp[xor] = dp.get(xor, 0) +value
+        return ans
