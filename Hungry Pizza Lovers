@@ -1,0 +1,10 @@
+class Solution:
+   def permute(self,arr,n):
+       sortlist = {}
+       for i in range(n):
+           sortlist[i+1] = arr[i][0]+arr[i][1]
+       sorted_dt_value = sorted(sortlist.items(), key=lambda item: item[1])
+       listarr = []
+       for i in range(n):
+           listarr.append(sorted_dt_value[i][0])
+       return listar
