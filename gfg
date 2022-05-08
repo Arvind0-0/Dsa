@@ -1,0 +1,14 @@
+class Solution:
+   def nthItem(self, L1, L2, A, B, N):
+       # code here
+       
+       ans = []
+           
+       ans=[(A[i] + B[j]) for i in range(L1) for j in range(L2) ]
+          
+       ans=sorted(list(set(ans)))
+           
+       if N> len(ans):
+           return -1
+       else:
+            return ans[N-1]
