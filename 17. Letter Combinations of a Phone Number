@@ -1,0 +1,35 @@
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        letters = { "2" : "abc", "3" : "def", "4" : "ghi", "5" : "jkl", "6" : "mno", "7" : "pqrs", "8" : "tuv", "9" : "wxyz" }
+        
+        if not digits:
+            return ""
+        
+        strs = [letters[digits[i]] for i in range(len(digits))]
+        ls = { key : value for key, value in zip(range(len(strs)), [len(s) for s in strs]) } 
+        indices = { key : value for key, value in zip(range(len(strs)), [0] * len(strs)) }
+        
+        def increment():
+            i = 0
+            while i + 1 < len(indices) and indices[i] + 1 == ls[i]:
+                indices[i] = 0
+                i += 1
+                
+            if i == len(indices) - 1 and indices[i] == ls[i] - 1:
+                return False
+                
+            indices[i] += 1
+            return True
+        
+        res = []
+        def get_combination():
+            comb = ""
+            for i, j in indices.items():
+                comb += strs[i][j]
+            res.append(comb)
+            
+        get_combination()
+        while increment():
+            get_combination()
+        
+        return res
