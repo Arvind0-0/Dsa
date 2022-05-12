@@ -1,0 +1,31 @@
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        if n == 1:
+            return [nums]
+        nums.sort()
+        res = [nums.copy()]
+        prev = self.getNextpermutation(nums, n)
+        while prev:
+            res.append(prev.copy())
+            prev = self.getNextpermutation(prev, n)
+        return res
+        
+    def getNextpermutation(self, nums, n):
+        i = n - 1
+        while i - 1 >= 0 and nums[i-1] >= nums[i]:
+            i -= 1
+        if i - 1 < 0:
+            return []
+        end = n - 1
+        while i-1 >= 0 and end > i - 1:
+            if nums[end] > nums[i-1]:
+                nums[i-1], nums[end] = nums[end], nums[i-1]
+                break
+            end -= 1
+        end = n - 1
+        while end > i:
+            nums[end], nums[i] = nums[i], nums[end]
+            i += 1
+            end -= 1
+        return nums
