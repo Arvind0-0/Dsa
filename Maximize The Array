@@ -1,0 +1,12 @@
+from heapq import heappush as hp, heappop as hpo 
+class Solution:
+    def maximizeArray(self, arr1, arr2, n):
+        heap =[]
+        vis = set()
+        for idx,ele in enumerate(arr2+arr1):
+            if ele not in vis:
+                hp(heap,(ele,idx))
+                vis.add(ele)
+                if len(heap)>n:
+                    hpo(heap)
+        return map(lambda x:x[0],sorted(heap,key = lambda x:x[1]))
