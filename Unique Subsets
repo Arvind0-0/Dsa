@@ -1,0 +1,19 @@
+class Solution:
+    def AllSubsets(self, s,n):
+        ou = []
+        res = set()
+        s.sort()
+        self.solve(s,ou,res)
+        res = list(res)
+        res.sort()
+        return res
+    def solve(self,s,ou,res):
+        if len(s)==0:
+            res.add(tuple(ou))
+            return
+        ou1 = ou[:]
+        ou2 = ou[:]
+        ou2.append(s[0])
+        s = s[1:]
+        self.solve(s,ou1,res)
+        self.solve(s,ou2,res)
