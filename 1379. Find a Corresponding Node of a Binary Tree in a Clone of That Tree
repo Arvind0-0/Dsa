@@ -1,0 +1,19 @@
+class Solution:
+    def getTargetCopy(self, original: TreeNode, cloned: TreeNode, target: TreeNode) -> TreeNode:
+        if original is target:  
+            return cloned
+        elif (original.left is None) and (original.right is None):
+            return None
+        else:
+            # Divide and conquer step
+            if original.left is not None:
+                result_left = self.getTargetCopy(original.left, cloned.left, target)
+                
+                if result_left is not None:
+                    return result_left
+            
+            if original.right is not None:
+                result_right = self.getTargetCopy(original.right, cloned.right, target)
+                
+                if result_right is not None:
+                    return result_right
