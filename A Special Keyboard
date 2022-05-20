@@ -1,0 +1,10 @@
+class Solution:
+    def findTime(self, S1, S2):
+        dict = {}
+        for i in range(26):
+            dict[S1[i]] = i
+        start,step = 0,0
+        for i in range(len(S2)):
+            step+=abs(dict[S2[i]]-start)
+            start = dict[S2[i]]
+        return step
