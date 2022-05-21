@@ -1,0 +1,15 @@
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:  
+        r = 1 << amount
+        res = 0
+
+        while r & 1 == 0:
+            next_r = r
+            for coin in coins:
+                next_r |= (r >> coin)
+            
+            if next_r == r:
+                return -1
+            r = next_r
+            res += 1
+        return res
