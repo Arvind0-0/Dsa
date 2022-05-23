@@ -1,0 +1,38 @@
+class Solution:
+    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
+        ans = 0
+        strDigitsCount = []
+        for s in strs:
+            cur0 = 0
+            cur1 = 0
+            for c in s:
+                if c=='0':
+                    cur0 += 1
+                if c=='1':
+                    cur1 += 1
+            strDigitsCount.append([cur0, cur1])
+        strDigitsCount = sorted(strDigitsCount, key=lambda x: x[0])    
+        for i  in range(len(strs)):
+            cur0 = m
+            cur1 = n
+            curSetLength = 0
+            for j in range(i, len(strs)):
+                if cur0 >= strDigitsCount[j][0] and cur1 >= strDigitsCount[j][1]:
+                    curSetLength += 1
+                    cur0 -= strDigitsCount[j][0]
+                    cur1 -= strDigitsCount[j][1]
+                    
+            ans = max(ans, curSetLength)
+        strDigitsCount = sorted(strDigitsCount, key=lambda x: x[1])  
+        for i  in range(len(strs)):
+            cur0 = m
+            cur1 = n
+            curSetLength = 0
+            for j in range(i, len(strs)):
+                if cur0 >= strDigitsCount[j][0] and cur1 >= strDigitsCount[j][1]:
+                    curSetLength += 1
+                    cur0 -= strDigitsCount[j][0]
+                    cur1 -= strDigitsCount[j][1]
+
+            ans = max(ans, curSetLength)
+        return ans
