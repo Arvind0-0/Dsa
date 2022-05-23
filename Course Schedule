@@ -1,0 +1,16 @@
+class Solution:
+    def findOrder(self, n, m, prerequisites):
+        adj = [[] for _ in range(n)]
+        in_degree = [0] * n
+        for edge in prerequisites:
+            adj[edge[1]].append(edge[0])
+            in_degree[edge[0]] += 1
+        stack = [i for i in range(n) if in_degree[i] == 0]
+        ans = []
+        while stack:
+            ans.append(stack.pop())
+            for x in adj[ans[-1]]:
+                in_degree[x] -= 1
+                if in_degree[x] == 0:
+                    stack.append(x)
+        return ans if len(ans) == n else []
