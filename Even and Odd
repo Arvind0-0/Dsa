@@ -1,0 +1,27 @@
+class Solution:
+    def reArrange(self, arr, N):
+        # code here 
+        i=0
+        j=1
+        k=0
+        while(k<N and i<N and j<N):
+            if(arr[k]%2==0):
+                t=arr[k]
+                arr[k]=arr[i]
+                arr[i]=t
+                i+=2
+                if(i<j):
+                    k=i
+                else:
+                    k=i
+                    
+            else:
+                t=arr[k]
+                arr[k]=arr[j]
+                arr[j]=t
+                j+=2
+                if(i<j):
+                    k=i
+                else:
+                    k=j
+        return arr
