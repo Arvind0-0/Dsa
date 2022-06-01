@@ -1,0 +1,17 @@
+class Solution:
+    def shiftPile(self, N, n):
+        
+        def move(k, frm, spare, to):
+            nonlocal n
+            if k == 0:
+                return None
+            r = move(k-1, frm, to, spare)
+            if r:
+                return r
+                
+            n -= 1
+            if n == 0:
+                return [frm, to]
+            return move(k-1, spare, frm, to)
+            
+        return move(N, "1", "2", "3")
