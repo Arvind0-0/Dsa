@@ -1,0 +1,22 @@
+class Solution:	
+	def buzzTime(self, N, M, L, H, A):
+		# code here
+		high = min(L,M)
+		low = 0
+		while(low<high):
+		    mid = (low+high)//2
+		    if(bool_(mid,N,M,L,H,A)):
+		        high = mid
+		    else:
+		        low = mid+1
+		return high
+def bool_(mid,N,M,L,H,A):
+    sumCount = 0
+    for i in range(N):
+        temp = H[i]+(A[i]*mid)
+        if(temp>L):
+            sumCount+=temp
+    if(sumCount>M):
+        return True
+    else:
+        return False
