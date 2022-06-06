@@ -1,0 +1,12 @@
+class Solution:
+  def countKdivPairs(self, arr, n, k):
+    
+        counter = [0]*k
+        ans = 0
+        
+        for e in arr:
+            e %= k
+            ans += counter[(k-e)%k]
+            counter[e] += 1
+            
+        return ans
