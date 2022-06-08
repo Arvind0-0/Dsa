@@ -1,0 +1,5 @@
+class Solution:
+    def nearlySorted(self,a,n,k):
+        a.sort()
+        return a
+        
