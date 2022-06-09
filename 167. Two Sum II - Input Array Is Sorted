@@ -1,0 +1,12 @@
+import sys
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        mydict = {}
+        for i, num in enumerate(numbers):
+            needed = target - num
+            if needed in mydict.keys():
+                return [mydict[needed]+1, i+1]
+            else:
+                mydict[num] = i
+                
+                
