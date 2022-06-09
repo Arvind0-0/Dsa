@@ -1,0 +1,24 @@
+class Solution:
+    
+    def find(par, r):
+        while par[r] != r:
+            r = par[r]
+        return r
+        
+
+    def compress(par, x, r):
+        while x != r:
+            par[x] = r
+            x = par[x]
+    def union_(self,a,b,par,rank1):
+        r1 = self.find(par, a)
+        r2 = self.find(par, b)
+        
+        if r1 != r2:
+            par[r1] = r2
+            
+        self.compress(par, a, r2)
+        self.compress(par, b, r2)
+    def isConnected(self,x,y,par,rank1):
+        return self.find(par, x) == self.find(par, y)
+        
