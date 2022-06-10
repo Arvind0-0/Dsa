@@ -1,0 +1,18 @@
+class Solution:
+    def maxCoins(self, A, B, T, N):
+        profit = [0]*N
+        count = 0
+        for i in range(N):
+            profit[i] =  [B[i],A[i]]
+        profit.sort(reverse = True)
+        for i in range(N):
+            T-=profit[i][1]
+            if(T>=0):
+                count+=(profit[i][0]*profit[i][1])
+                if(T == 0):
+                    break
+            else:
+                T+=profit[i][1]
+                count+=(profit[i][0]*T)
+                break
+        return  count
