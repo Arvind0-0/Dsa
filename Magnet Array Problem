@@ -1,0 +1,16 @@
+class Solution:
+    def nullPoints(self, n, a, ans):
+        for i in range(n - 1):
+            l = a[i] #  l = low
+            h = a[i+1] # h = high
+            while round(l, 2) != round(h, 2):
+                mid = (l + h) /2
+                force = sum(1 / (x-mid) for x in a)
+                if force == 0:
+                    l = mid 
+                    break
+                elif force < 0:
+                    l = mid
+                else:
+                    h = mid
+            ans[i] = round(l, 2)
