@@ -1,0 +1,25 @@
+class Solution:
+	def TotalCount(self, s):
+	    n = len(s)
+	    summ = 0
+	    for i in s:
+	        summ += int(i)
+        dp = [[-1 for _ in range(summ+1)] for _ in range(n+1)]
+	    return self.group(n,0,0,s,dp)
+    
+    def group(self,n,idx,initialsum,s,dp):
+        if idx == n:
+            return 1
+        
+        if dp[idx][initialsum] != -1:
+            return dp[idx][initialsum]
+            
+        cursum = 0
+        ans = 0
+        for i in range(idx,n):
+            cursum += int(s[i])
+            if cursum >= initialsum:
+                ans += self.group(n,i+1,cursum,s,dp)
+        dp[idx][initialsum] =  ans   
+        return dp[idx][initialsum]
+	     
