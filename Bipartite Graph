@@ -1,0 +1,22 @@
+class Solution:
+    def isBipartite(self, n, adj):
+        color = [-1 for _ in range(n)]
+        for i in range(n):
+            if color[i] == -1:
+                if not self.dfscheck(i,color,adj):
+                    return False
+        return True
+        
+    def dfscheck(self,node,color,adj):
+        if color[node] == -1:
+            color[node] = 1
+        for i in adj[node]:
+            if color[i] == -1:
+                color[i] = 1 - color[node]
+    
+                if not self.dfscheck(i,color,adj):
+                    return False
+    
+            elif color[i] == color[node]:
+                return False
+        return True
