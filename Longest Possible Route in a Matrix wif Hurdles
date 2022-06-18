@@ -1,0 +1,26 @@
+class Solution:
+   def longestPath(self,mat,n : int, m : int, xs : int, ys : int, xd : int, yd : int) -> int:
+           
+       ans = -1
+       def dfs(x, y, visited, dist):
+           nonlocal ans
+           
+           if mat[x][y] == 0 or (x, y) in visited:
+               return
+
+           if (x, y) == (xd, yd): 
+               ans = max(dist, ans)
+               return
+
+           visited.add((x, y))
+           
+           for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+               nx = x + dx
+               ny = y + dy
+               if 0 <= nx < n and 0 <= ny < m:
+                   dfs(nx, ny, visited, dist+1)
+
+           visited.remove((x, y))
+       
+       dfs(xs, ys, set(), 0)
+       return ans
