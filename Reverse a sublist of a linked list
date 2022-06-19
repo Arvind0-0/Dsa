@@ -1,0 +1,53 @@
+class Solution:
+  def reverseBetween(self, head, m, n):
+        def find_len(head):
+            temp = head
+            count = 0
+            while temp:
+                count += 1
+                temp = temp.next
+            return count
+        if not head:
+            return
+        
+        list_len = find_len(head)
+        
+        if m > 1:
+            cur_ind = 1
+            top = head
+            while top and cur_ind < m-1:
+                top = top.next
+                cur_ind += 1
+        if n < list_len:
+            cur_ind = 1
+            end = head
+            while end and cur_ind < n+1:
+                end = end.next
+                cur_ind += 1
+
+        # Main part of revesing
+        cur_ind = 1
+        ptr = head
+        while ptr and cur_ind != m:
+            ptr = ptr.next
+            cur_ind += 1
+            
+        count = m
+        pre = post = None
+        cur = ptr
+        while count <= n and cur is not None:
+            post = cur.next
+            cur.next = pre
+            pre = cur
+            cur = post
+            count += 1
+            
+        new_head = pre
+        
+        if m > 1:
+            top.next = new_head
+            new_head = head
+        if n < list_len:
+            ptr.next = end
+            
+        return new_head
