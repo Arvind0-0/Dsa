@@ -1,0 +1,35 @@
+class TreeNode:
+    def __init__(self):
+        self.children = [None]*26
+        self.word = ''
+class Trie:
+    def __init__(self):
+        self.root = TreeNode()
+    def insert(self,word):
+        cur_node = self.root
+        for s in word:
+            index = ord(s)-ord('a')
+            if cur_node.children[index] is None:
+                cur_node.children[index] = TreeNode()
+            cur_node = cur_node.children[index]
+            if len(word)>len(cur_node.word):
+                cur_node.word = word
+        return
+    def search(self,word):
+        cur_node = self.root
+        for s in word:
+            index = ord(s)-ord('a')
+            cur_node = cur_node.children[index]
+        return cur_node.word
+class Solution:
+    def minimumLengthEncoding(self, words: List[str]) -> int:
+        res = set()
+        root = Trie()
+        for word in words:
+            root.insert(word[::-1])
+        for word in words:
+            res.add(root.search(word[::-1]))
+        count = 0
+        for word in res:
+            count+=len(word)+1
+        return count
