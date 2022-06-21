@@ -1,0 +1,28 @@
+class Solution:
+   def checkBST(node,ftp,q,c):
+       if ftp[0]==False:
+           return
+       if node is not None:
+           if node.left is not None:
+               Solution.checkBST(node.left,ftp,q,c)
+           if q[0]<node.data:
+               c[0]+=1
+               q[0]=node.data
+           else:
+               ftp[0]=False
+           if node.right is not None:
+               Solution.checkBST(node.right,ftp,q,c)
+   def largestBst(self, root):
+       que=[root]
+       max_size=1
+       while bool(que):
+           node=que.pop(0)
+           ftp,c,q=[True],[0],[-1]
+           Solution.checkBST(node,ftp,q,c)
+           if ftp[0]==True:
+               max_size=max(max_size,c[0])
+           if node.left is not None:
+               que.append(node.left)
+           if node.right is not None:
+               que.append(node.right)
+       return max_size
