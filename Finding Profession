@@ -1,0 +1,11 @@
+class Solution:
+    def profession(self, level, pos):
+        ans = 0
+        n = pos - 1
+        while n:
+            n &= n-1
+            ans +=1
+        if ans&1:
+            return 'd'
+        else:
+            return 'e'
