@@ -1,0 +1,6 @@
+class Solution:
+    def sumBetweenTwoKth(self, A, N, K1, K2):
+        temp = sorted(A)
+        start = K1-1
+        end = K2-1
+        return sum(temp[start+1:end])
