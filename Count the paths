@@ -1,0 +1,10 @@
+class Solution:
+    def possible_paths(self, edges, n, s, d):
+        if s == d: 
+            return 1
+        
+        counter = 0
+        for edge in edges:
+            if edge[0] == s:
+                counter += self.possible_paths(edges, n, edge[1], d)
+        return counter
