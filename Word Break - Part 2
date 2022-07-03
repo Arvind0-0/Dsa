@@ -1,0 +1,14 @@
+class Solution:
+   def wordBreak(self, n, dict, s):
+       wordset=set(dict)
+       res=[]
+       def word(i=0,path=[]):
+           if i==len(s):
+               res.append(" ".join(path))
+           for j in range(i+1,len(s)+1):
+               words=s[i:j]
+               if words in wordset:
+                   word(j,path+[words])
+       word()
+       
+       return res
