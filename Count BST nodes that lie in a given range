@@ -1,0 +1,15 @@
+from collections import deque
+class Solution:
+   def getCount(self,root,low,high):
+       que=deque([root])
+       ans=0
+       while que:
+           node=que.popleft()
+           if node.data<=high and node.data>=low:
+               ans+=1
+           if node.data>low and node.left is not None:
+               que.append(node.left)
+           if node.data<high and node.right is not None:
+               que.append(node.right)
+       return ans
+        
