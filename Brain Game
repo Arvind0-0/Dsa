@@ -1,0 +1,12 @@
+class Solution:
+	def brainGame(self, nums):
+		ans = [0]*1001
+		for i in range(2,1001):
+		    for j in range(2*i,1001,i):
+		        ans[j] = max(ans[j],1+ans[i])
+		res = 0
+        for i in range(len(nums)):
+            res = res^ans[nums[i]]
+        if res==0:
+            return False
+        return True
