@@ -1,0 +1,13 @@
+class Solution:
+   def transformTree(self, root):
+       ans = [0]
+       self.help(root, ans)
+       return root
+   def help(self, root, ans):
+           if root == None:
+               return
+           self.help(root.right, ans)
+           x = root.data
+           root.data = ans[0]
+           ans[0] += x
+           self.help(root.left, ans)
