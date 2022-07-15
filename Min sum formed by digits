@@ -1,0 +1,13 @@
+import heapq
+class Solution:
+   def minSum(self, arr, n):
+       digits=[]
+       val1,val2=0,0
+       for i in range(n):
+           heapq.heappush(digits,arr[i])
+       while digits:
+           if digits:
+               val1=10*(val1+heapq.heappop(digits))
+           if digits:
+               val2=10*(val2+heapq.heappop(digits))
+       return (val1+val2)//10
