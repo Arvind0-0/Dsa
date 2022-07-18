@@ -1,0 +1,16 @@
+class Solution:
+    def findCeil(self,root, inp):
+        
+        def walk(node):
+            if not node:
+                return -1
+            
+            if node.key == inp:
+                return inp
+            if node.key < inp:
+                return walk(node.right)
+            
+            x = walk(node.left)
+            return node.key if x == -1 else x
+
+        return walk(root)
