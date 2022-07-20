@@ -1,0 +1,19 @@
+class Solution:
+    def countMin(self, s):
+        # code here
+        l = len(s)
+        dp = [[0]*(l+1) for me in range(l+1)]
+        for me in range(l):
+            dp[me][me] = 1
+        
+        for me in range(l-1, -1, -1):
+            for j in range(me+1, l):
+    
+                if s[me] == s[j]:  # 
+                    if me+1 == j:
+                        dp[me][j] = 2
+                    elif me!=j:
+                        dp[me][j] = dp[me+1][j-1] + 2
+                else:
+                    dp[me][j] = max(dp[me+1][j], dp[me][j-1])
+        return len(s) - dp[0][l-1]
