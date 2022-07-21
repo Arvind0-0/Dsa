@@ -1,0 +1,11 @@
+def _push(a,n):
+   minimum = float("inf")
+   # code here
+   stack = list()
+   for element in a:
+       # find the minimum
+       minimum = min(minimum, element)
+       stack.append([element, minimum])
+       
+   return stack
+       
