@@ -1,0 +1,25 @@
+class Solution:
+    def numProvinces(self, adj, V):
+        # code here 
+        graph={i:[] for i in range(V)}
+        #print(graph)
+        for i in range(len(adj)):
+            for j in range(len(adj[0])):
+                if i!=j:
+                    if adj[i][j]==1:
+                        graph[i].append(j)
+        
+        
+        visited=[False]*V
+        def dfs(i):
+            visited[i]=True
+            for j in graph[i]:
+                if visited[j]==False:
+                    dfs(j)
+        
+        ct=0
+        for i in range(V):
+            if visited[i]==False:
+                dfs(i)
+                ct+=1
+        return ct
