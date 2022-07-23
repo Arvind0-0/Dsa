@@ -1,0 +1,32 @@
+class Solution:
+    def maxLevel(self, h:int,m:int) -> int:
+        h,m = self.R1(h,m)
+        lvl = 1
+        while True :
+            if (min(self.R2(h,m))<min(self.R3(h,m))) and min(self.R3(h,m))>0 :
+                h , m = (self.R3(h,m))
+                h,m = self.R1(h,m)
+                lvl += 2
+            elif (min(self.R2(h,m))>=min(self.R3(h,m))) and min(self.R2(h,m))>0 :
+                h , m = (self.R2(h,m))
+                h,m = self.R1(h,m)
+                lvl += 2 
+            else :
+                break
+        return lvl
+        
+    def R1(self,h,m):
+        h1 = h + 3
+        m1 = m + 2
+        
+        return (h1,m1)
+        
+    def R2(self,h,m):
+        h2 = h - 5
+        m2 = m - 10
+        return (h2,m2)
+    
+    def R3(self,h,m):
+        h3 = h - 20
+        m3 = m + 5
+        return (h3,m3)
