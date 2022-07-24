@@ -1,0 +1,16 @@
+class Solution:
+    def maxPathSum(self, root):
+        cr,m = 0,float('-inf')
+        def maximal(r,cr):
+            nonlocal m
+            if not r:
+               return 0
+            cr+=r.data
+            if not r.left and not r.right:
+               m = max(m,cr)
+               
+            maximal(r.left,cr)
+            maximal(r.right,cr)
+           
+        maximal(root,cr)
+        return m
