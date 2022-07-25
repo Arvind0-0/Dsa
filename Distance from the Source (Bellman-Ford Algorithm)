@@ -1,0 +1,7 @@
+def bellman_ford(self, V, adj, S):
+        d=[10**8]*V
+        d[S]=0
+        for i in range(V-1):
+            for u,v,w in adj:
+                d[v]=min(d[v],d[u]+w)
+        return d
