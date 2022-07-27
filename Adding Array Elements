@@ -1,0 +1,16 @@
+def minOperations(self, arr, n, k):
+       import heapq
+       c=0
+       heapq.heapify(arr)
+       for i in range(n):
+           a=heapq.heappop(arr)
+           if(a<k):
+               b=heapq.heappop(arr)
+               d=a+b
+               heapq.heappush(arr,d)
+               c=c+1
+           else:
+               break
+       # print(c)
+       return c
+
