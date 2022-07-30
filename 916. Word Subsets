@@ -1,0 +1,32 @@
+class Solution:
+#     O(m+n)where m is words1(word) and n is words2(word)
+    def wordSubsets(self, words1: List[str], words2: List[str]) -> List[str]:
+        result = []
+        maxCount = [0] * 26
+        for word in words2:
+            charFreq = self.getFreqOfChar(word)
+
+            for j in range(26):
+                maxCount[j] = max(maxCount[j], charFreq[j])
+
+        for idx, word in enumerate(words1):
+            word1CharFreq = self.getFreqOfChar(word)
+
+            flag = True
+            for i in range(26):
+                if maxCount[i] > word1CharFreq[i]:
+                    flag = False
+                    break
+            if flag:
+                result.append(word)
+
+        return result
+
+
+
+    def getFreqOfChar(self, string):
+        freq = [0] * 26
+        for j in string:
+            freq[ord(j)-ord('a')] += 1
+
+        return freq
