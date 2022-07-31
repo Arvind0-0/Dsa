@@ -1,0 +1,16 @@
+def check_elements(self, arr, n, a, b):
+       c= b-a+1
+       cnt = 0
+       l = set()
+       
+       for i in arr:
+           l.add(i)
+           
+       for i in l:
+           if(i>=a and i<=b):
+               cnt += 1
+               
+       if(cnt == c):
+           return True
+       else:
+           return False
