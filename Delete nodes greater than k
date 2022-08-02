@@ -1,0 +1,10 @@
+class Solution:
+    def deleteNode(self, root, k):
+        while root!=None and root.data>=k:
+            root = root.left
+        if root!=None:
+            if root.left!=None:
+                root.left = self.deleteNode(root.left,k)
+            if root.right!=None:
+                root.right = self.deleteNode(root.right,k)
+        return root
