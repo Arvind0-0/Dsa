@@ -1,0 +1,18 @@
+public static Node post_order(int pre[], int n) 
+{
+
+   
+   return solve(pre, new int[]{0},n, Integer.MAX_VALUE);
+}
+
+static Node solve(int pre[], int []i, int n, int b){
+   if(i[0]==n|| pre[i[0]]>b)
+       return null;
+       
+   Node r = new Node(pre[i[0]++]);
+   
+   r.left = solve(pre, i, n,r.data);
+   r.right = solve(pre, i,n, b);
+   
+   return r;
+}
