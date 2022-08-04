@@ -1,0 +1,23 @@
+class Solution():
+   def isCompleteBT(self, root):
+       #Add Code Here
+       
+       q = []
+       q.append(root)
+       flag = False
+       while(len(q) > 0):
+           t = q.pop(0)
+           if(t.left and flag):
+               return False
+           if(not t.left and t.right):
+               return False
+           
+           if(t.left):
+               q.append(t.left)
+     
+           if(t.right):
+               q.append(t.right)
+           if(t.left and not t.right):
+               flag = True
+       
+       return True
