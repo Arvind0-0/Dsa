@@ -1,0 +1,16 @@
+class Solution{
+    
+public:
+    Node* partition(Node *l, Node *h){
+        Node* i = l;
+        while(l != h){
+            if(l->data <= h->data){
+                swap(i->data,l->data);
+                i = i->next;
+            }
+            l = l->next;
+        }
+        swap(i->data, h->data);
+        return i;
+    }
+};
