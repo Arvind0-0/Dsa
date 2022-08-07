@@ -1,0 +1,9 @@
+from collections import Counter
+
+class Solution:
+    def getOddOccurrence(self, arr, n):
+        # code here
+        dc = Counter(arr)
+        for key in dc:
+            if(dc[key]%2!=0):
+                return key
