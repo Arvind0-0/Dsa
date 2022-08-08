@@ -1,0 +1,10 @@
+class Solution:
+   def josephus(self,n,k):
+       li=[i for i in range(1,n+1)]
+       start=0
+       while len(li)!=1:
+           m=len(li)
+           next=(start+k-1)%m
+           li.pop(next)
+           start=next
+       return li[-1]
