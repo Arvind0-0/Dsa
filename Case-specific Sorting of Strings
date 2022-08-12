@@ -1,0 +1,23 @@
+class Solution:
+    def caseSort(self,s,n):
+        u = []
+        l = []
+        for i in range(n):
+            if(s[i].isupper()):
+                u.append(s[i])
+            else:
+                l.append(s[i])
+        
+        u.sort()
+        l.sort()
+        string = ""
+        j = k = 0
+        for i in range(n):
+            if(s[i].isupper()):
+                string+=u[j]
+                j+=1
+            else:
+                string+=l[k]
+                k+=1
+        return string
+        
