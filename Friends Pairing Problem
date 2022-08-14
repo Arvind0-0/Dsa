@@ -1,0 +1,8 @@
+class Solution:
+   def countFriendsPairings(self, n):
+       # code here
+       M=1000000000+7
+       a,b=1,1
+       for i in range(2,n+1):
+           a,b=b,((i-1)*a%M+b)%M
+       return b
