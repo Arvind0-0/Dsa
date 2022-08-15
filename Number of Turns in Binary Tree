@@ -1,0 +1,54 @@
+class Solution:
+    #Function to return the lowest common ancestor in a Binary Tree.
+    def lca(self, root, n1, n2):
+        if not root:
+            return None
+        if root.data == n1 or root.data == n2:
+            return root
+        left_trav = self.lca(root.left, n1, n2)
+        right_trav = self.lca(root.right, n1, n2)
+        
+        if left_trav and right_trav:
+            return root
+        if left_trav:
+            return left_trav
+        return right_trav
+        
+    def NumberOFTurns(self, root, first, second):
+        count = 0
+        # Handling the first case
+        # Function to return count of turns from CA node to cur_node
+        def LR_case(root, val, direction):
+            nonlocal count
+            if not root:
+                return (False, direction)
+            if root.data == val:
+                return (True, direction)
+            left = LR_case(root.left, val, "left")
+            right = LR_case(root.right, val, "right")
+            
+            if left[0]:
+                # If the direction of the matched ans is not matching with the direction
+                # of this this node from it's parent
+                if left[1] not in direction:
+                    count += 1
+                return (True, direction)
+            elif right[0]:
+                # Same with the right one
+                if right[1] not in direction:
+                    count += 1
+                return (True, direction)
+            
+            return (False, direction)
+        
+        ca = self.lca(root, first, second)
+        if ca.data == first:
+            LR_case(ca, second, 'leftright')
+        elif ca.data == second:
+            LR_case(ca, first, 'leftright')
+        else:
+            LR_case(ca, first, 'leftright')
+            LR_case(ca, second, 'leftright')
+            count += 1
+        
+        return count
