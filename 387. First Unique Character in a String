@@ -1,0 +1,8 @@
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        c=Counter(s)
+        ans=[[i,c[i]] for i in c if c[i]==1]
+        if len(ans)>0:
+            return s.index(ans[0][0])
+        else:
+            return -1
