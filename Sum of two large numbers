@@ -1,0 +1,26 @@
+	def findSum(self, X, Y):
+	    while len(X) > 1 and X[0] == "0":
+	        X = X[1:]
+	    while len(Y) > 1 and Y[0] == "0":
+	        Y = Y[1:]
+	        
+		ret = ""
+		
+		i, j = len(X)-1, len(Y)-1
+		
+		carry = 0
+		ret = []
+		while i >= 0 or j >= 0 or carry > 0:
+		    
+		    x = int(X[i]) if i >= 0 else 0
+		    y = int(Y[j]) if j >= 0 else 0
+		        
+		    s = x+y+carry
+		    ret.append(s%10)
+		    carry = (s//10)
+		    
+		    i -= 1
+		    j -= 1
+		  
+		  
+	    return "".join(str(x) for x in ret[::-1])
