@@ -1,0 +1,14 @@
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        fast, compare, slow = head, [], head
+        while(fast and fast.next):
+            fast = fast.next.next
+            compare.append(slow.val)
+            slow = slow.next
+        if(fast != None):
+            slow = slow.next
+        for i in reversed(range(len(compare))):
+            if(slow == None or compare[i] != slow.val):
+                return(False)
+            slow = slow.next
+        return(True)
