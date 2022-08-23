@@ -1,0 +1,10 @@
+def IsFoldable(root):
+   if not root: return True
+   q = deque([(root.left, root.right)])
+   while q:
+       L, R = q.popleft()
+       if L is None and R is None: continue
+       if L is None or R is None: return False
+       q.append((L.left, R.right))
+       q.append((L.right, R.left))
+   return True
