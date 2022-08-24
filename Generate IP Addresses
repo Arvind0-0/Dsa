@@ -1,0 +1,22 @@
+    def genIp(self, s):
+        
+        ans = []
+        
+        def valid(ip):
+            if int(ip) > 256 or len(ip) > 1 and ip.startswith("0"):
+                return False
+            return True
+                
+        def generate(sofar, s, n=4):
+            nonlocal ans
+            if s == "":
+                if n == 0:
+                    ans.append(sofar[1:])
+                return
+
+            for i in range(1, len(s)+1):
+                if valid(s[:i]):
+                    generate(sofar + "." + s[:i], s[i:], n-1)
+        
+        generate("", s)
+        return ans
