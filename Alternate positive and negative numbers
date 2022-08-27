@@ -1,0 +1,21 @@
+class Solution:
+    def rearrange(self,arr, n):
+        a = []# a is array for all positive numbers
+        b = []# b is array for all negative numbers
+        res = []
+        for i in range(n):
+            if arr[i] >= 0:
+                a.append(arr[i])
+            else:
+                b.append(arr[i])
+        arr.clear()
+        a= a[::-1]
+        b= b[::-1]
+        for i in range(n):
+            if len(a)>0:
+                arr.append(a.pop())
+            if len(b)>0:
+                arr.append(b.pop())
+        return arr
+        
+    
