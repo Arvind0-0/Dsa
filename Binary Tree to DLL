@@ -1,0 +1,19 @@
+class Solution:
+    def bToDLL(self,root):
+        head, prev = None, None
+        def convert(n):
+            nonlocal head, prev
+            if not n:
+                return
+        
+            convert(n.left)
+            if not head:
+                head = n
+            if prev:
+                prev.right = n
+                n.left = prev
+            prev = n
+            convert(n.right)
+        
+        convert(root)
+        return head
