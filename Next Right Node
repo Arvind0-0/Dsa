@@ -1,0 +1,19 @@
+from collections import deque
+class Solution:
+   def nextRight(self, root, key):
+       arr=[]
+       q=deque([root])
+       while q:
+           for i in range(len(q)):
+               x=q.popleft()
+               arr.append(x.data)
+               if x.left:
+                   q.append(x.left)
+               if x.right:
+                   q.append(x.right)
+           arr.append('l')
+       for i in range(len(arr)):
+           if arr[i]==key:
+               if arr[i+1]=='l':
+                   return Node(-1)
+               return Node(arr[i+1])
