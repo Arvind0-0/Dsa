@@ -1,0 +1,10 @@
+class Solution:
+	def DistinctSum(self, nums):
+		# Code here
+		total = sum(nums)
+		dp = [True]+[False]*total
+		for x in nums:
+		    for i in range(total - x,-1,-1):
+		        if dp[i]:
+		            dp[i+x]=True
+	    return [i for i in range(total + 1) if dp[i]]
