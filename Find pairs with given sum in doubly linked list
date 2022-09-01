@@ -1,0 +1,21 @@
+def findPairsWithGivenSum(self, target : int, head : Optional['Node']) -> List[List[int]]:
+       # code here
+       l=[]
+       while head:
+           l.append(head.data)
+           head=head.next
+       l.sort()
+       p=[]
+       i=0
+       j=len(l)-1
+       while i<j:
+           s=l[i]+l[j]
+           if s==target:
+               p.append([l[i],l[j]])
+               i+=1
+               j-=1
+           elif s<target:
+               i+=1
+           else:
+               j-=1
+       return p
