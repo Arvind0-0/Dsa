@@ -1,0 +1,29 @@
+class Solution:
+   def minimumCostOfBreaking(self,x : List[int], y : List[int],m : int, n : int) -> int:
+       x.sort(reverse=True)
+       y.sort(reverse=True)
+       
+       i, j = 0, 0
+       
+       total, hp, vp = 0, 1, 1
+       
+       while i < len(x) and j < len(y):
+           if x[i] > y[j]:
+               vp += 1
+               total += x[i] * hp
+               i += 1
+           else:
+               hp += 1
+               total += y[j] * vp
+               j += 1
+       
+       while i < len(x):
+           vp += 1
+           total += x[i] * hp
+           i += 1
+       
+       while j < len(y):
+           hp += 1
+           total += y[j] * vp
+           j += 1
+       return total
