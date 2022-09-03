@@ -1,0 +1,12 @@
+from typing import List
+class Solution:
+    def findMinTime(self, n : int, l : int, arr : List[int]) -> int:
+        ans = []
+        for x in arr:
+            ele = x
+            ans.append(x)
+            for i in range(2,n+1):
+                ans.append(ans[-1]+(ele*i))
+            ans.sort()
+        return ans[n-1]
+        
