@@ -1,0 +1,11 @@
+
+class Solution:
+    def smallestSumSubarray(self, arr, N):
+        s,mx = 0,float('inf')
+        for i in arr:
+            s+=i
+            mx = min(s,mx)
+            if s>0:
+                s = 0
+        return mx
+
