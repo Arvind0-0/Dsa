@@ -1,0 +1,12 @@
+
+def isStackPermutation(self, N : int, A : List[int], B : List[int]) -> int:
+       # code here
+       s=[]
+       idx=0
+       for i in range(N):
+           s.append(A[i])
+           
+           while(s and s[-1]==B[idx]):
+               s.pop()
+               idx+=1
+       return 1 if len(s)==0 else 0   
