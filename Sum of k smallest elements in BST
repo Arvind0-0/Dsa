@@ -1,0 +1,10 @@
+def summ(root, k):
+    st, res = [], 0
+    while True:
+        while root:
+            st.append(root)
+            root = root.left
+        if not st or not k: return res
+        node, k = st.pop(), k-1
+        res += node.key
+        root = node.right
