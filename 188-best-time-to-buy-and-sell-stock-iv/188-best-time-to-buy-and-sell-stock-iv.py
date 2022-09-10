@@ -1,11 +1,17 @@
 class Solution:
     def maxProfit(self, k: int, prices: List[int]) -> int:
-        min_price = [float("inf")] * (k + 1)
-        max_profit = [0] * (k + 1)
+        _p = [1000] + prices + [0]
+        _vp = (y for x, y, z in zip(_p, _p[1:], _p[2:]) if (x < y) ^ (y < z))
         
-        for price in prices:
-            for i in range(1, k + 1):
-                min_price[i] = min(min_price[i], price - max_profit[i-1])
-                max_profit[i] = max(max_profit[i], price - min_price[i])
+        profits, vp = [], []
+        for v, p in zip(_vp, _vp):
+            while vp and (v < vp[-1][0] or p >= vp[-1][1]):
+                pv, pp = vp.pop()
+                if pv < v:
+                    v, pv = pv, v
+                profits.append(pp - pv)
+            vp.append((v, p))
+        else:
+            profits.extend(p - v for v, p in vp)
 
-        return max_profit[k]
+        return sum(nlargest(k, profits))
