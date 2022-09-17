@@ -1,0 +1,13 @@
+    def minimumSwaps(self,c : List[int], v : List[int],n : int,k : int,b : int, t : int) -> int:
+        # code here
+        
+        ans = 0
+        for i in range(n-1, -1, -1):
+            if v[i]*t - (b-c[i]) >= 0:
+                k -= 1
+            else:
+                ans += k
+            if k == 0:
+                return ans
+        
+        return -1
