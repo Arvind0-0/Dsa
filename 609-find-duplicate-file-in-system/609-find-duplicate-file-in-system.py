@@ -1,11 +1,10 @@
-from collections import defaultdict
 class Solution:
     def findDuplicate(self, paths: List[str]) -> List[List[str]]:
-        dic=defaultdict(lambda :[])
-        for i in range(len(paths)):
-            st=paths[i]
-            lst=st.split(" ")
-            for j in range(1,len(lst)):
-                sp=lst[j].index("(")
-                dic[lst[j][sp:]].append(lst[0]+"/"+lst[j][:sp])
-        return [dic[i] for i in dic if len(dic[i])>1]
+        maps = defaultdict(list)
+        for path in paths:
+            strs = path.split()
+            root = strs[0]
+            for s in strs[1:]:
+                file_name, _, content = s.partition('(')
+                maps[content].append(root+'/'+file_name)
+        return [x for x in maps.values() if len(x) > 1]
