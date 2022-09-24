@@ -1,0 +1,9 @@
+class Solution:
+    def swapBitGame (self,N):
+        n=format(N,'b')
+        s=str(n)
+        setBits=s.count('1')
+        if (setBits)%2==0:
+            return 1
+        else:
+            return 0
