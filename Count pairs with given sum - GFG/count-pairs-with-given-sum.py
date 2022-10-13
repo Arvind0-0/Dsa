@@ -1,13 +1,14 @@
-from collections import defaultdict
+import bisect
 class Solution:
     def getPairsCount(self, arr, n, k):
-        count=0
-        d=defaultdict(int)
-        for i in arr:
-            if (k-i in d):
-                count+=d[k-i]
-            d[i]+=1
-        return count
+        arr.sort()
+        x, c=0, 0
+        for i in range(n-1):
+            x = k-arr[i]
+            y = bisect.bisect_left(arr,x,i+1,n)
+            z = bisect.bisect(arr,x,i+1,n)
+            c = c+z-y
+        return c
 
 
 #{ 
