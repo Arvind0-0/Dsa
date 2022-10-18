@@ -1,0 +1,12 @@
+from collections import defaultdict
+
+def downwardDigonal(N, A): 
+    d = defaultdict(list)
+    for i in range(N):
+        for j in range(N):
+            d[i+j].append(A[i][j])
+    ans = []
+    for i in d:
+        for j in d[i]:
+            ans.append(j)
+    return ans
